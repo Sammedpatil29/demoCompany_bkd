@@ -41,20 +41,19 @@ const userSchema = new mongoose.Schema({
   },
   selectedCourse: {
     type: String,
-    enum: ['design', 'frontend', 'backend', 'fullstack'],
-    required: true,
+    enum: ['design', 'frontend', 'backend', 'MEAN'],
   }
 });
  
 // Middleware to calculate expiry date
-userSchema.pre('save', function(next) {
-  if (this.isNew) {
-    const joiningDate = this.joiningDate;
-    const packageDuration = this.package === '3' ? 3 : 7; // 3 or 7 months package
-    const expiryDate = new Date(joiningDate.setMonth(joiningDate.getMonth() + packageDuration));
-    this.expiryDate = expiryDate;
-  }
-  next();
-});
+// userSchema.pre('save', function(next) {
+//   if (this.isNew) {
+//     const joiningDate = this.joiningDate;
+//     const packageDuration = this.package === '3' ? 3 : 7; // 3 or 7 months package
+//     const expiryDate = new Date(joiningDate.setMonth(joiningDate.getMonth() + packageDuration));
+//     this.expiryDate = expiryDate;
+//   }
+//   next();
+// });
  
 module.exports = mongoose.model('User', userSchema);
