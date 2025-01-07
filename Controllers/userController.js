@@ -46,7 +46,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.getUser = async (req, res) => {
-  const username = req.body.username;
+  const username = req.params.username;
   try {
     const user = await User.findOne({ username: username });
   

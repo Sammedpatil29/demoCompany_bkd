@@ -10,6 +10,6 @@ router.get('/all', userController.getAllUsers);
 
 router.post('/login', userController.login);
 router.post('/protected', userController.protected);
-router.get('/getUser', userController.getUser);
+router.get('/getUser/:username', userController.getUser);
  
 module.exports = router;
