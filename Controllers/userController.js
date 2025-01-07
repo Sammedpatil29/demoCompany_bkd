@@ -45,6 +45,23 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+exports.getUser = async (req, res) => {
+  const username = req.body.username;
+  try {
+    const user = await User.findOne({ username: username });
+  
+    if (!user) {
+      // If no user is found, return a 404 or other appropriate response
+      return res.status(404).json({ message: "User not found" });
+    }
+  
+    res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error fetching user" });
+  }
+};
+
 exports.login = async (req, res) => {
     const { username, password } = req.body;
    
