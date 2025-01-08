@@ -34,6 +34,32 @@ exports.createUser = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
+
+exports.userCheck = async (req, res) => {
+  try {
+    const { username, email, contact} = req.body;
+ 
+    // Ensure all mandatory fields are present
+    if (!username || !email || !contact) {
+      return res.status(400).json({ message: 'Username, email, and contact are required!' });
+    }
+
+    const emailCheck = await User.findOne({ email: req.body.email });
+    const contactCheck = await User.findOne({ contact: req.body.contact });
+
+if(emailCheck || contactCheck){
+  res.status(201).json({
+    message: 'duplicate values'
+  })
+} else {
+  res.json({
+    message: 'User validation done'
+  })
+}
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
  
 // Get all users
 exports.getAllUsers = async (req, res) => {

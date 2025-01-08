@@ -11,5 +11,6 @@ router.get('/all', userController.getAllUsers);
 router.post('/login', userController.login);
 router.post('/protected', userController.protected);
 router.get('/getUser/:username', userController.getUser);
+router.post('/userCheck', userController.userCheck);
  
 module.exports = router;
