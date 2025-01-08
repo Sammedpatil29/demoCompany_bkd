@@ -11,7 +11,7 @@ router.get('/all', userController.getAllUsers);
 router.post('/login', userController.login);
 router.post('/protected', userController.protected);
 router.get('/getUser/:username', userController.getUser);
-router.post('/updateUser/:userId', userController.updateUser);
+router.patch('/updateUser/:userId', userController.updateUser);
 router.post('/userCheck', userController.userCheck);
 router.post('/updatePassword', userController.updatePassword);
  
