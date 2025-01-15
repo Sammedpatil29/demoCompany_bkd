@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require('./Routes/userRoutes');
+const leadRoutes = require('./Routes/leadsRouter');
+const metaRoutes = require('./Routes/metaDataRoute');
 
 const SECRET_KEY = "your_secret_key";
 
@@ -27,6 +29,8 @@ mongoose.connect('mongodb+srv://Sammed:Sudu12345@sammed.6vgbg.mongodb.net/demoCo
  
 // Use the routes
 app.use('/api/users', userRoutes);
+app.use('/api/leads', leadRoutes);
+app.use('/api/metaData', metaRoutes);
  
 // Define the server port
 const PORT = process.env.PORT || 5000;
