@@ -64,7 +64,11 @@ const userSchema = new mongoose.Schema({
   selectedCourse: {
     type: String,
     enum: ['design', 'frontend', 'backend', 'MEAN'],
-  }
+  },
+  promocode: {
+    type: String
+  },
+
 });
  
 // Middleware to calculate expiry date

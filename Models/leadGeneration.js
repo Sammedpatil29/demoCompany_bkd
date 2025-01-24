@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 const leadsSchema = new mongoose.Schema({
     username: {
-        type: String
+        type: String,
+        unique:true
       },
       email: {
         type: String

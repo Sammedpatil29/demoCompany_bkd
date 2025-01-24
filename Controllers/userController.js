@@ -51,7 +51,7 @@ exports.updatePassword = async (req, res) => {
 // Create a new user
 exports.createUser = async (req, res) => {
   try {
-    const { username, email, contact, password, package, amountPaid, selectedCourse, joiningDate, expiryDate, role } = req.body;
+    const { username, email, contact, password, package, amountPaid, selectedCourse, joiningDate, expiryDate, role, promoCode } = req.body;
  
     // Ensure all mandatory fields are present
     if (!username || !email || !contact) {
@@ -67,7 +67,7 @@ exports.createUser = async (req, res) => {
       package,
       amountPaid,
       selectedCourse,
-      joiningDate, expiryDate, role
+      joiningDate, expiryDate, role, promoCode
     });
  
     // Save the user to the database
