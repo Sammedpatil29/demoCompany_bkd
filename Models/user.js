@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['design', 'frontend', 'backend', 'MEAN'],
   },
-  promocode: {
+  promoCode: {
     type: String
   },
 
