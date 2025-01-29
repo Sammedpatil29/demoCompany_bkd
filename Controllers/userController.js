@@ -1,6 +1,16 @@
 const User = require('../Models/user');
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = "your_secret_key";
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // You can use other email services (e.g., Outlook, SendGrid, etc.)
+  auth: {
+    user: 'democompany2025@gmail.com', // Your email address
+    pass: 'nlpf fgrs jpvv jgbx',  // Your email password or App Password (if using Gmail with 2FA enabled)
+  },
+});
+
 
 const verifyToken = (req, res, next) => {
   const token = req.header('Authorization')?.split(' ')[1];  // Extract the token from the Authorization header
@@ -72,11 +82,50 @@ exports.createUser = async (req, res) => {
  
     // Save the user to the database
     await newUser.save();
+
+    const mailOptions = {
+      from: 'democompany2025@gmail.com', // Sender email
+  to: email,                      // Receiver email (this will come from the user input)
+  subject: "Welcome to demoCompany",            // Subject line
+  html: `
+    <html>
+      <body>
+        <h2>Welcome to Our Platform!</h2>
+        <p>Dear ${username},</p>
+        <p>Thank you for registering with us. Your account has been created successfully.</p>
+        <p><strong>Your Login Details:</strong></p>
+        <table style="border: 1px solid #ccc; padding: 10px; width: 100%; max-width: 400px; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 8px; font-weight: bold; background-color: #f4f4f4;">Username:</td>
+            <td style="padding: 8px;">${username}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; font-weight: bold; background-color: #f4f4f4;">Password:</td>
+            <td style="padding: 8px;">${password}</td>
+          </tr>
+        </table>
+        <p style="background-color:rgb(231, 211, 27)">Joining Letter is generated in the website. or else you can download it in your Dashboard</p>
+        <p>Please keep your login details secure. If you did not register with us, please ignore this email.</p>
+        <p>Best regards,</p>
+        <p>Team, <b>demoCompany</b></p>
+      </body>
+    </html>
+  `,                  // Email body text
+    };
  
     res.status(201).json({
       message: 'User created successfully!',
       user: newUser,
     });
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email: ' + error.message);
+      } else {
+        console.log('Email sent successfully: ' + info.response);
+      }
+    });
+
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
