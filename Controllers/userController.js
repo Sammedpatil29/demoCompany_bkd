@@ -97,14 +97,14 @@ exports.createUser = async (req, res) => {
         <table style="border: 1px solid #ccc; padding: 10px; width: 100%; max-width: 400px; border-collapse: collapse;">
           <tr>
             <td style="padding: 8px; font-weight: bold; background-color: #f4f4f4;">Username:</td>
-            <td style="padding: 8px;">${username}</td>
+            <td style="padding: 8px;">${email}</td>
           </tr>
           <tr>
             <td style="padding: 8px; font-weight: bold; background-color: #f4f4f4;">Password:</td>
             <td style="padding: 8px;">${password}</td>
           </tr>
         </table>
-        <p style="background-color:rgb(231, 211, 27)">Joining Letter is generated in the website. or else you can download it in your Dashboard</p>
+        <p style="background-color:rgb(231, 211, 27); padding: 5px; border-radius:5px">Joining Letter is generated in the website. or else you can download it in your Dashboard</p>
         <p>Please keep your login details secure. If you did not register with us, please ignore this email.</p>
         <p>Best regards,</p>
         <p>Team, <b>demoCompany</b></p>
