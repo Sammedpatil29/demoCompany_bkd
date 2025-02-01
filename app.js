@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const userRoutes = require('./Routes/userRoutes');
 const leadRoutes = require('./Routes/leadsRouter');
 const metaRoutes = require('./Routes/metaDataRoute');
+const userStoryRoute = require('./Routes/userStoryRoute');
 
 const SECRET_KEY = "your_secret_key";
 
@@ -31,6 +32,7 @@ mongoose.connect('mongodb+srv://Sammed:Sudu12345@sammed.6vgbg.mongodb.net/demoCo
 app.use('/api/users', userRoutes);
 app.use('/api/leads', leadRoutes);
 app.use('/api/metaData', metaRoutes);
+app.use('/api/userStory', userStoryRoute);
  
 // Define the server port
 const PORT = process.env.PORT || 5000;
