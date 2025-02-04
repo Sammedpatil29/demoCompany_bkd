@@ -70,4 +70,13 @@ exports.updateUserStory = async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });
       }
   }
+  exports.getUserStories = async (req, res) => {
+    const { userName } = req.params;
+    try {
+        const userStories = await userStory.find({userName});
+        res.status(200).json(userStories);
+      } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message });
+      }
+  }
   
